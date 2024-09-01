@@ -10,10 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
   //
   const form = document.querySelector("form");
   const selectNivel = document.getElementById("nivel");
+  const tbody = document.getElementById("tableBody");
+  const btnClear = document.getElementById("clearLocalStorage");
+
   //Niveles.
   const NIVEL_1 = "NIVEL_1";
   const NIVEL_2 = "NIVEL_2";
   const NIVEL_RANDY = "NIVEL_RANDY";
+
+  //key localStorage
+  let localStorageKey = Math.random();
 
   let refreshIntervalId = null;
   let score = 0;
@@ -36,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setGameTimeout.disabled = true;
     startGame.disabled = true;
     selectNivel.disabled = true;
-
     const NIVEL = selectNivel.value;
 
     switch (NIVEL) {
@@ -56,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
     }
 
-    refreshIntervalId = setInterval(updateTimer, 1000);
+    refreshIntervalId = setInterval(updateTimer, 100);
   });
 
   clickTarget.addEventListener("click", () => {
@@ -86,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearInterval(refreshIntervalId);
         refreshIntervalId = null;
       }
+
       timeoutInput.disabled = false;
       setGameTimeout.disabled = false;
       startGame.disabled = false;
@@ -95,9 +101,43 @@ document.addEventListener("DOMContentLoaded", function () {
       clickTarget.style.height = "50px";
       clickTarget.removeEventListener("mouseover", moveTarget);
       selectNivel.disabled = false;
+      addLocalStorage(
+        //almacenar data en el localStorage
+        `${localStorageKey++}`,
+        `Puntuacion : ${score} / Dificultad ${selectNivel.value} `
+      );
+      getLocalStorage(); //obtener data del localStorage
+
       score = 0;
       scoreDisplay.textContent = "0";
       alert(mensaje);
     }
   }
+
+  function addLocalStorage(key, value) {
+    localStorage.setItem(key, value);
+  }
+
+  function getLocalStorage() {
+    if (localStorage.length > 0) tbody.innerHTML = "";
+
+    const keys = Object.keys(localStorage);
+
+    keys.map((key) => {
+      const tr = document.createElement("tr");
+      const value = localStorage.getItem(key);
+      tr.innerHTML = `
+      <th>${value}</th>   
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  btnClear.addEventListener("click", () => {
+    localStorage.clear();
+    tbody.innerHTML = "";
+  });
+
+  getLocalStorage();
 });
