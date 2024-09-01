@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
         clickTarget.style.width = "25px";
         clickTarget.style.height = "25px";
         break;
-
       case NIVEL_RANDY:
         clickTarget.addEventListener("mouseover", moveTarget);
         break;
@@ -96,7 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
       clickTarget.style.height = "50px";
       clickTarget.removeEventListener("mouseover", moveTarget);
       selectNivel.disabled = false;
-
+      score = 0;
+      scoreDisplay.textContent = "0";
       alert(mensaje);
     }
   }
