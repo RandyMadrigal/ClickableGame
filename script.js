@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     timeoutInput.disabled = true;
     setGameTimeout.disabled = true;
     startGame.disabled = true;
+    selectNivel.disabled = true;
 
     const NIVEL = selectNivel.value;
 
@@ -94,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
       clickTarget.style.width = "50px";
       clickTarget.style.height = "50px";
       clickTarget.removeEventListener("mouseover", moveTarget);
+      selectNivel.disabled = false;
+
       alert(mensaje);
     }
   }
