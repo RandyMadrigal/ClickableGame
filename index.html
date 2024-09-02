@@ -8,48 +8,52 @@
   </head>
 
   <body>
-    <h1>Haz clic en el cuadrado rojo</h1>
+    <div class="game">
+      <h1>Haz clic en el cuadrado rojo</h1>
+      <!-- Form-->
+      <form>
+        <input
+          type="number"
+          id="timeout"
+          name="timeout"
+          min="1"
+          max="100"
+          value="30"
+        />
+        <button type="submit" id="setGameTimeout">Fijar temporizador</button>
+        <select id="nivel">
+          <option value="NIVEL_1">Nivel 1</option>
+          <option value="NIVEL_2">Nivel 2</option>
+          <option value="NIVEL_3">Nivel 3</option>
+        </select>
+      </form>
 
-    <form>
-      <input
-        type="number"
-        id="timeout"
-        name="timeout"
-        min="1"
-        max="100"
-        value="30"
-      />
-      <button type="submit" id="setGameTimeout">Fijar temporizador</button>
-      <select id="nivel">
-        <option value="NIVEL_1">Nivel 1</option>
-        <option value="NIVEL_2">Nivel 2</option>
-        <option value="NIVEL_RANDY">Nivel "Randy"</option>
-      </select>
-    </form>
+      <div id="gameArea">
+        <div id="clickTarget"></div>
+      </div>
 
-    <div id="gameArea">
-      <div id="clickTarget"></div>
+      <div class="flex-container">
+        <p>Puntuación: <span id="score">0</span></p>
+        <p id="timer">Tiempo restante: <span id="timeLeft">30</span></p>
+      </div>
+
+      <button id="startGame">Iniciar temporizador</button>
+      <p id="mensaje"></p>
     </div>
 
-    <div class="flex-container">
-      <p>Puntuación: <span id="score">0</span></p>
-      <p id="timer">Tiempo restante: <span id="timeLeft">30</span></p>
+    <div class="info">
+      <table>
+        <thead>
+          <tr>
+            <th>Puntuacion + Dificultad</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- data from script.js -->
+        </tbody>
+      </table>
+      <button id="clearLocalStorage">Clear</button>
     </div>
-
-    <button id="startGame">Iniciar temporizador</button>
-    <p id="mensaje"></p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Puntuacion + Dificultad</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <!-- data from script.js -->
-      </tbody>
-    </table>
-    <button id="clearLocalStorage">Clear</button>
 
     <script src="script.js"></script>
   </body>
