@@ -2,13 +2,33 @@
 
 body{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     font-family: 'Poppins','Courier New', Courier, monospace;
     height: 100vh;
     background-color: #374151;
+    gap: 2px
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 450px;
+    max-height: 450px;
+    gap: 10px;
+    overflow: hidden;
 }
 
 h1,p,span{
@@ -16,7 +36,7 @@ h1,p,span{
 }
 
 #gameArea {
-    width: 350px;
+    width: 400px;
     height: 350px;
     border: 4px solid #333;
     position: relative;
@@ -25,7 +45,7 @@ h1,p,span{
 }
 
 #gameArea:hover{
-    background-color: #9CA3AF; /* bg-white */
+    background-color: #9CA3AF; 
     transition: background-color 0.3s ease; 
 }
 
@@ -77,7 +97,7 @@ button:hover {
 }
 
 button:focus {
-    outline: none; /* focus:outline-none */
+    outline: none;
 }
 
 select{
@@ -95,11 +115,37 @@ select:focus{
 
 .flex-container{
     width: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    
+}
 
+table{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    max-height: 450px;
+    overflow-y: auto;
+    display: block;
+    font-size: 12px;
+  
+}
+
+thead{
+    background-color: #333 ;
+    color: #ffffff
+}
+
+th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th:hover {
+    background-color: #9CA3AF;
+}
+
+tbody > p{
+    color: #000000;
 }

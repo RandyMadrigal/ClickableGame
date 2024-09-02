@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const setGameTimeout = document.getElementById("setGameTimeout");
   const timeoutInput = document.getElementById("timeout");
   const startGame = document.getElementById("startGame");
-  //
+
+  //Acceder al dom
   const form = document.querySelector("form");
   const selectNivel = document.getElementById("nivel");
   const tbody = document.getElementById("tableBody");
@@ -16,10 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //Niveles.
   const NIVEL_1 = "NIVEL_1";
   const NIVEL_2 = "NIVEL_2";
-  const NIVEL_RANDY = "NIVEL_RANDY";
-
-  //key localStorage
-  let localStorageKey = Math.random();
+  const NIVEL_3 = "NIVEL_3";
 
   let refreshIntervalId = null;
   let score = 0;
@@ -38,12 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   startGame.addEventListener("click", function () {
-    timeoutInput.disabled = true;
-    setGameTimeout.disabled = true;
-    startGame.disabled = true;
-    selectNivel.disabled = true;
-    const NIVEL = selectNivel.value;
+    configStartGame(); // Configuracion al iniciar el juego.
 
+    const NIVEL = selectNivel.value;
+    //determinar el nivel de dificultad
     switch (NIVEL) {
       case NIVEL_1:
         clickTarget.style.width = "50px";
@@ -53,15 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
         clickTarget.style.width = "25px";
         clickTarget.style.height = "25px";
         break;
-      case NIVEL_RANDY:
+      case NIVEL_3:
         clickTarget.addEventListener("mouseover", moveTarget);
         break;
-
       default:
         break;
     }
-
-    refreshIntervalId = setInterval(updateTimer, 100);
+    refreshIntervalId = setInterval(updateTimer, 1000);
   });
 
   clickTarget.addEventListener("click", () => {
@@ -83,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateTimer() {
+    const localStorageKey = Math.random(); //key localStorage
+
     if (timeLeft > 0) {
       timeLeft--;
       timeLeftDisplay.textContent = timeLeft;
@@ -92,20 +88,17 @@ document.addEventListener("DOMContentLoaded", function () {
         refreshIntervalId = null;
       }
 
-      timeoutInput.disabled = false;
-      setGameTimeout.disabled = false;
-      startGame.disabled = false;
       let mensaje = `Tiempo agotado! Tu puntuación final es: ${score}`;
       messageDisplay.textContent = mensaje;
-      clickTarget.style.width = "50px";
-      clickTarget.style.height = "50px";
-      clickTarget.removeEventListener("mouseover", moveTarget);
-      selectNivel.disabled = false;
+
+      configEndGame(); //Configuracion cuando el juego se termina.
+
       addLocalStorage(
         //almacenar data en el localStorage
-        `${localStorageKey++}`,
+        `${localStorageKey}`,
         `Puntuacion : ${score} / Dificultad ${selectNivel.value} `
       );
+
       getLocalStorage(); //obtener data del localStorage
 
       score = 0;
@@ -119,9 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function getLocalStorage() {
+    if (localStorage.length === 0) tbody.innerHTML = ` <p> No data </p> `;
     if (localStorage.length > 0) tbody.innerHTML = "";
 
-    const keys = Object.keys(localStorage);
+    const keys = Object.keys(localStorage); // acceder a las claves de este objeto
 
     keys.map((key) => {
       const tr = document.createElement("tr");
@@ -136,8 +130,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnClear.addEventListener("click", () => {
     localStorage.clear();
-    tbody.innerHTML = "";
+    tbody.innerHTML = ` <p> No data </p> `;
   });
+
+  function configStartGame() {
+    timeoutInput.disabled = true;
+    setGameTimeout.disabled = true;
+    startGame.disabled = true;
+    selectNivel.disabled = true;
+  }
+
+  function configEndGame() {
+    timeoutInput.disabled = false;
+    setGameTimeout.disabled = false;
+    startGame.disabled = false;
+    clickTarget.style.width = "50px";
+    clickTarget.style.height = "50px";
+    clickTarget.removeEventListener("mouseover", moveTarget);
+    selectNivel.disabled = false;
+  }
 
   getLocalStorage();
 });
