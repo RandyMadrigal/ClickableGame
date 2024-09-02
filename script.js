@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const NIVEL_2 = "NIVEL_2";
   const NIVEL_3 = "NIVEL_3";
 
+  //sound
+  const sound = new Audio("./assets/audio/click.wav");
+
   let refreshIntervalId = null;
   let score = 0;
   let timeLeft = 30;
@@ -63,8 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (refreshIntervalId != null) {
       score++;
       scoreDisplay.textContent = score;
+      sound.play();
       moveTarget();
     }
+    sound.currentTime = "0";
   });
 
   function moveTarget() {
