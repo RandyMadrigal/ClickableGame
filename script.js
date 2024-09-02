@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case NIVEL_3:
         clickTarget.addEventListener("mouseover", moveTarget);
+        clickTarget.classList.add("image");
         break;
       default:
         break;
@@ -96,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
       addLocalStorage(
         //almacenar data en el localStorage
         `${localStorageKey}`,
-        `Puntuacion : ${score} / Dificultad ${selectNivel.value} `
+        `Puntuacion : ${score} / Dificultad : ${selectNivel.value} `
       );
 
       getLocalStorage(); //obtener data del localStorage
@@ -147,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clickTarget.style.width = "50px";
     clickTarget.style.height = "50px";
     clickTarget.removeEventListener("mouseover", moveTarget);
+    clickTarget.classList.remove("image");
     selectNivel.disabled = false;
   }
 

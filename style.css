@@ -57,6 +57,14 @@ h1,p,span{
     cursor: pointer;
 }
 
+.image{
+    background-image: url("./assets/img/lol.png");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    border-radius: 50%; 
+}
+
 #clickTarget:hover {
     background-color: yellow;
 }
