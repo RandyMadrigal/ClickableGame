@@ -22,6 +22,19 @@ document.addEventListener("DOMContentLoaded", function () {
   //sound
   const sound = new Audio("./assets/audio/click.wav");
 
+  //Modal
+  const infoModal = document.getElementById("info-modal");
+  const openBtn = document.getElementById("openBtn");
+  const closeBtn = document.getElementById("closeBtn");
+
+  openBtn.addEventListener("click", () => {
+    infoModal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    infoModal.style.display = "none";
+  });
+
   let refreshIntervalId = null;
   let score = 0;
   let timeLeft = 30;
@@ -102,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
       addLocalStorage(
         //almacenar data en el localStorage
         `${localStorageKey}`,
-        `Puntuacion : ${score} / Dificultad : ${selectNivel.value} `
+        `Puntuacion : ${score} / ${selectNivel.value} `
       );
 
       getLocalStorage(); //obtener data del localStorage

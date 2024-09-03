@@ -9,7 +9,21 @@
 
   <body>
     <div class="game">
-      <h1>Haz clic en el cuadrado rojo</h1>
+      <div class="header">
+        <h1>CLICK GAME</h1>
+        <a
+          href="https://github.com/RandyMadrigal/ClickableGame/tree/dev"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="github"
+            src="https://www.svgrepo.com/show/452211/github.svg"
+            alt="github"
+          />
+        </a>
+      </div>
+
       <!-- Form-->
       <form>
         <input
@@ -28,6 +42,10 @@
         </select>
       </form>
 
+      <div>
+        <button id="openBtn">Puntuacion</button>
+      </div>
+
       <div id="gameArea">
         <div id="clickTarget"></div>
       </div>
@@ -41,18 +59,19 @@
       <p id="mensaje"></p>
     </div>
 
-    <div class="info">
+    <div id="info-modal">
       <table>
         <thead>
           <tr>
-            <th>Puntuacion + Dificultad</th>
+            <th>Puntuacion</th>
           </tr>
         </thead>
         <tbody id="tableBody">
           <!-- data from script.js -->
         </tbody>
       </table>
-      <button id="clearLocalStorage">Clear</button>
+      <button id="clearLocalStorage"></button>
+      <button id="closeBtn"></button>
     </div>
 
     <script src="script.js"></script>

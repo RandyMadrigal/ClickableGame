@@ -2,14 +2,11 @@
 
 body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
     font-family: 'Poppins','Courier New', Courier, monospace;
-    height: 100vh;
     background-color: #374151;
-    gap: 2px
 }
 
 .game{
@@ -19,16 +16,34 @@ body{
     align-items: center;
 }
 
-.info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#info-modal{
+    display: none; 
+    position: fixed;
     text-align: center;
-    height: 450px;
-    max-height: 450px;
-    gap: 10px;
-    overflow: hidden;
+    z-index: 1; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Mueve el modal a su posición central */
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding: 100%; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); 
+}
+
+#openBtn{
+    margin-bottom: 5px;
+}
+
+#closeBtn {
+    background-image: url("https://www.svgrepo.com/show/40746/close.svg");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 40px;
+    width: 40px;
+    background-color: transparent; 
+    border: none;
+    margin-top: 5px;
 }
 
 h1,p,span{
@@ -58,11 +73,11 @@ h1,p,span{
 }
 
 .image{
-    background-image: url("./assets/img/lol.png");
-    background-size: cover; 
+    background-image: url("https://imgs.search.brave.com/qkgY9Kkn4mwRBUMrhddtNlF2UR43j24I3AdxABBc6pw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lbW9q/aWdyYXBoLm9yZy9t/ZWRpYS9nb29nbGUv/ZmFjZS13aXRoLXRl/YXJzLW9mLWpveV8x/ZjYwMi5wbmc");
+    background-size: contain; 
     background-position: center; 
     background-repeat: no-repeat; 
-    border-radius: 50%; 
+    border-radius: 50%;
 }
 
 #clickTarget:hover {
@@ -74,9 +89,8 @@ h1,p,span{
 }
 
 form{
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-
 
 input{
     text-align: center;
@@ -89,7 +103,7 @@ input{
 input:focus {
     outline: none; 
     border-color: #3b82f6; 
-  }
+}
 
 button{
     color: #ffffff; 
@@ -130,22 +144,26 @@ select:focus{
 }
 
 table{
-    border-collapse: collapse;
-    width: 100%;
-    background-color: #ffffff;
-    max-height: 450px;
-    overflow-y: auto;
     display: block;
-    font-size: 12px;
-  
+    margin: 0 auto;
+    width: 350px;
+    max-width: 400px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    height: 300px;
+    max-height: 300px;
+    text-align: center;  
+    overflow-y: auto;
 }
 
 thead{
+    
     background-color: #333 ;
     color: #ffffff
 }
 
 th{
+    width: 350px;
     border: 1px solid #ddd;
     padding: 8px;
 }
@@ -157,3 +175,46 @@ th:hover {
 tbody > p{
     color: #000000;
 }
+
+#clearLocalStorage{
+    background-image: url("https://www.svgrepo.com/show/503803/garbage-can.svg");
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 40px;
+    width: 40px;
+    background-color: transparent; 
+    margin-top: 5px;
+    border: none;
+}
+
+.github{
+    width: 30px;
+    height: 30px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*Media query*/
+@media screen and (max-width: 550px) {
+    body{
+        flex-direction: column;
+    }
+
+    #gameArea {
+        width: 325px;
+        height: 325px;
+    }
+}
+
+
+
+
+
+
+
